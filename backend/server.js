@@ -5,6 +5,8 @@ import cors from 'cors'
 import cookieParser from 'cookie-parser'
 
 import tourRouter from './routes/tours.js'
+import userRouter from './routes/users.js'
+import authRouter from './routes/auth.js'
 
 dotenv.config()
 const app = express()
@@ -30,7 +32,9 @@ app.use(cors())
 app.use(cookieParser())
 
 // routers
+app.use('/auth', authRouter)
 app.use('/tours', tourRouter)
+app.use('/users', userRouter)
 
 
 app.get('/', (req,res) => {
