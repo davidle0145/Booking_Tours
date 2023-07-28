@@ -7,10 +7,17 @@ import cookieParser from 'cookie-parser'
 import tourRouter from './routes/tours.js'
 import userRouter from './routes/users.js'
 import authRouter from './routes/auth.js'
+import reviewRouter from './routes/reviews.js'
+import bookingRouter from './routes/booking.js'
 
 dotenv.config()
 const app = express()
 const port = process.env.PORT || 6000
+
+const corsOptions = {
+    origin: true,
+    credentials: true
+}
 
 // database connection
 const connect = async() => {
@@ -28,14 +35,15 @@ const connect = async() => {
 
 // middleware
 app.use(express.json())
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(cookieParser())
 
 // routers
-app.use('/auth', authRouter)
-app.use('/tours', tourRouter)
-app.use('/users', userRouter)
-
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/tours', tourRouter)
+app.use('/api/v1/users', userRouter)
+app.use('/api/v1/review', reviewRouter)
+app.use('/api/v1/booking', bookingRouter)
 
 app.get('/', (req,res) => {
     res.send('Hello World')
