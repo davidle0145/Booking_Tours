@@ -75,3 +75,28 @@
     font-weight: 500;
 }
 
+@media only screen and (max-width: 768px) {
+    .register__img {
+        display: none;
+    }
+
+    .register__form {
+        width: 70%;
+        margin: auto;
+    }
+
+    .register__container {
+        padding-bottom: 3rem;
+        margin-top: 70px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .register__form {
+        width: 100%;
+    }
+
+    .register__container {
+        padding-bottom: 1rem;
+    }
+}

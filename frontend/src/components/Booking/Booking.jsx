@@ -1,36 +1,62 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import './booking.css'
 import { Form, FormGroup, ListGroup, ListGroupItem, Button } from 'reactstrap'
 import {useNavigate} from 'react-router-dom'
+import { AuthContext } from '../../context/AuthContext'
+import { BASE_URL } from '../../utils/config'
 
 const Booking = ({tour, avgRating}) => {
-
-  const {price, reviews} = tour
+  const {price, reviews, title} = tour
   const navigate = useNavigate()
+  const {user} = useContext(AuthContext)
 
-  const [credentials, setCredentials] = useState({
-    userId: '01', // later it will be dynamic
-    userEmail: 'example@gmail.com',
+  const [booking, setBooking] = useState({
+    userId: user && user._id,
+    userEmail: user && user.email,
+    tourName: title,
     fullName: '',
-    phone: '',
+    phoneNumber: '',
     guestSize: 1,
     bookAt: ''
   })
 
   const handleChange = e => {
-    setCredentials(prev => ({...prev, [e.target.id]:e.target.value}))
+    setBooking(prev => ({...prev, [e.target.id]:e.target.value}))
   }
 
   const serviceFee = 10
-  const totalAmount = Number(price) * Number(credentials.guestSize) + Number(serviceFee)
+  const totalAmount = Number(price) * Number(booking.guestSize) + Number(serviceFee)
 
   // send data to the server
-  const handleClick = e => {
+  const handleClick = async e => {
     e.preventDefault()
-    
-    navigate('/thank-you')
-  }
 
+    try {
+      if (!user || user === undefined || user === null) {
+        return alert('Please sign in')
+      }
+
+      const res = await fetch(`${BASE_URL}/booking`, {
+        method: 'post',
+        headers: {
+          'content-type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify(booking)
+      })
+      
+      const result = await res.json()
+
+      if (!res.ok) {
+        return alert(result.message)
+      }
+      alert(result.message)
+      navigate('/thank-you')
+
+    } catch (err) {
+      alert(err.message)
+    }
+  }
 
   return (
     <div className='booking'>
@@ -51,7 +77,7 @@ const Booking = ({tour, avgRating}) => {
           </FormGroup>
 
           <FormGroup>
-            <input type="number" placeholder='Phone' id='phone' required onChange={handleChange}/>
+            <input type="text" placeholder='Phone Number' id='phoneNumber' required onChange={handleChange}/>
           </FormGroup>
 
           <FormGroup className='d-flex align-items-center gap-3'>
@@ -83,8 +109,6 @@ const Booking = ({tour, avgRating}) => {
 
         <Button className='btn primary__btn w-100 mt-4' onClick={handleClick}>Book Now</Button>
       </div>
-
-
     </div>
   )
 }
