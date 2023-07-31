@@ -21,23 +21,27 @@ const About = () => {
             <Col lg='12' className='pt-5 text-center'>
               <div class="about__us-infor">
                 <div class="about__us-card"> 
+                  <i class="ri-suitcase-fill"></i>
                   <p class="about__us-heading">Traveller Tours</p>
                   <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                   <p>Uiverse</p>
                 </div>
                 <div class="about__us-card"> 
+                  <i class="ri-earth-fill"></i>
                   <p class="about__us-heading">Explore the world</p>
                   <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
                   <p>Uiverse</p>
                 </div>
                 <div class="about__us-card">
+                  <i class="ri-treasure-map-fill"></i>
                   <p class="about__us-heading">Adventure Vacations</p>
                   <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem!</p>
                   <p>Uiverse</p>
                 </div>
                 <div class="about__us-card">
+                  <i class="ri-hotel-fill"></i>
                   <p class="about__us-heading">Luxurious Hotels</p>
-                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt, sunt?.</p>
+                  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit.</p>
                   <p>Uiverse</p>
                 </div>
               </div>

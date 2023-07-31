@@ -52,7 +52,7 @@
 }
   
 .about__us-heading {
-    font-size: 20px;
+    font-size: 17px;
     text-transform: capitalize;
     font-weight: 700;
 }
@@ -73,5 +73,8 @@
 .about__us-card:hover::before {
     transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
 }
-  
+
+.about__us-card i {
+    font-size: 24px;
+}
   
