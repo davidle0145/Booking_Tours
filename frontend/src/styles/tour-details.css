@@ -54,8 +54,12 @@
     font-size: 1.1rem;
     display: flex;
     align-items: center;
-    color: var(--secondary-color);
+    /* color: var(--secondary-color); */
     cursor: pointer;
+}
+
+.rating__group span.active {
+    color: var(--secondary-color);
 }
 
 .tour__reviews h4 {

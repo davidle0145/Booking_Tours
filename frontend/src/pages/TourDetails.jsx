@@ -42,6 +42,17 @@ const TourDetails = () => {
   // format date
   const options = {day:'numeric', month:'long', year:'numeric'}
 
+  // stars
+  const stars = document.querySelectorAll(".rating__group span")
+  stars.forEach((star, index1) => {
+    star.addEventListener("click", () => {
+      stars.forEach((star, index2) => {
+        index1 >= index2 ? star.classList.add("active") : star.classList.remove("active")
+      })
+    })
+  })
+
+  
   // submit request to the server
   const submitHandler = async e => {
     e.preventDefault()
@@ -72,6 +83,7 @@ const TourDetails = () => {
         return alert(result.message)
       }
       alert(result.message)
+      window.location.reload()
     } catch (err) {
       alert(err.message)
 
